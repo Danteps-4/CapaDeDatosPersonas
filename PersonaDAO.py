@@ -63,7 +63,7 @@ if __name__ == "__main__":
     # eliminados = PersonaDAO.eliminar(persona1)
     # log.debug(f"Personas eliminadas: {eliminados}")
 
-    #Seleccionar todas las personas
-    # personas = PersonaDAO.seleccionar()
-    # for persona in personas:
-    #     print(persona)
+    # Seleccionar todas las personas
+    personas = PersonaDAO.seleccionar()
+    for persona in personas:
+        print(persona)
