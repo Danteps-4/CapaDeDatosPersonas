@@ -53,17 +53,17 @@ if __name__ == "__main__":
     # insertadas = PersonaDAO.insertar(persona1)
     # log.debug(f"Personas insertadas: {insertadas}")
 
-    #Actualizar
+    #Actualizar persona
     # persona1 = Persona(15, "Jorgitooo", "Juarez", "jorgiño@hotmail.com")
     # acutalizados = PersonaDAO.actualizar(persona1)
     # log.debug(f"Personas actualizadas: {acutalizados}")
 
-    #Eliminar
+    #Eliminar persona
     # persona1 = Persona(id_persona=14)
     # eliminados = PersonaDAO.eliminar(persona1)
     # log.debug(f"Personas eliminadas: {eliminados}")
 
-    #Seleccionar
+    #Seleccionar todas las personas
     # personas = PersonaDAO.seleccionar()
     # for persona in personas:
     #     print(persona)
