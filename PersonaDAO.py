@@ -48,7 +48,7 @@ class PersonaDAO:
                 return cursor.rowcount
 
 if __name__ == "__main__":
-    #Insertar
+    #Insertar persona
     # persona1 = Persona(nombre="Pepito", apellido="Genitales", email="pepito@gmail.com")
     # insertadas = PersonaDAO.insertar(persona1)
     # log.debug(f"Personas insertadas: {insertadas}")
