@@ -1,5 +1,6 @@
 from Conexion import *
 from Persona import *
+from Cursor import *
 
 class PersonaDAO:
     _SELECCIONAR = "SELECT * FROM persona ORDER BY id_persona"
@@ -9,40 +10,36 @@ class PersonaDAO:
 
     @classmethod
     def seleccionar(cls):
-        with Conexion.obtenerConexion() as conexion:
-            with conexion.cursor() as cursor:
-                cursor.execute(cls._SELECCIONAR)
-                registros = cursor.fetchall()
+        with CursorDelPool() as cursor:
+            cursor.execute(cls._SELECCIONAR)
+            registros = cursor.fetchall()
 
-                personas = []
-                for registro in registros:
-                    persona = Persona(registro[0], registro[1], registro[2], registro[3])
-                    personas.append(persona)
-                return personas
+            personas = []
+            for registro in registros:
+                persona = Persona(registro[0], registro[1], registro[2], registro[3])
+                personas.append(persona)
+            return personas
 
     @classmethod
     def insertar(cls, persona):
-        with Conexion.obtenerConexion() as conexion:
-            with conexion.cursor() as cursor:
-                valores = (persona.nombre, persona.apellido, persona.email)
-                cursor.execute(cls._INSERTAR, valores)
+        with CursorDelPool() as cursor:
+            valores = (persona.nombre, persona.apellido, persona.email)
+            cursor.execute(cls._INSERTAR, valores)
 
-                return cursor.rowcount
+            return cursor.rowcount
 
     @classmethod
     def actualizar(cls, persona):
-        with Conexion.obtenerConexion():
-            with Conexion.obtenerCursor() as cursor:
-                valores = (persona.nombre, persona.apellido, persona.email, persona.id_persona)
-                cursor.execute(cls._ACTUALIZAR, valores)
+        with CursorDelPool() as cursor:
+            valores = (persona.nombre, persona.apellido, persona.email, persona.id_persona)
+            cursor.execute(cls._ACTUALIZAR, valores)
 
-                return cursor.rowcount
+            return cursor.rowcount
 
     @classmethod
     def eliminar(cls, persona):
-        with Conexion.obtenerConexion():
-            with Conexion.obtenerCursor() as cursor:
-                valores = (persona.id_persona, )
-                cursor.execute(cls._ELIMINAR, valores)
+        with CursorDelPool() as cursor:
+            valores = (persona.id_persona, )
+            cursor.execute(cls._ELIMINAR, valores)
 
-                return cursor.rowcount
+            return cursor.rowcount
